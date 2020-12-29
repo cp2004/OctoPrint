@@ -152,6 +152,34 @@ octoprint.plugin.pluginmanager.reconnect_hooks
           "octoprint.plugin.pluginmanager.reconnect_hooks": reconnect_hooks_hook
       }
 
+.. _sec-bundledplugins-pluginmanager-helpers
+
+Helpers
+-------
+
+export_plugins_json
++++++++++++++++++++
+
+.. _sec-bundledplugins-pluginmanager-helpers-export-plugins-json
+.. autofunction:: octoprint.plugins.pluginmanager.PluginManagerPlugin.generate_plugins_json
+
+    .. list-table::
+       :widths: 5 5 40
+       :header-rows: 1
+
+       * - Key
+         - Type
+         - Description
+       * - ``key``
+         - string
+         - The plugin's internal identifier
+       * - ``name``
+         - string
+         - The plugin's human readable name
+       * - ``url``
+         - string
+         - The plugin's homepage
+
 .. _sec-bundledplugins-pluginmanager-sourcecode:
 
 Source Code

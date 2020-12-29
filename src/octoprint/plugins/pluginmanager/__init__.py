@@ -1775,6 +1775,40 @@ class PluginManagerPlugin(
     def generate_plugins_json(
         settings, plugin_manager, ignore_bundled=True, ignore_plugins_folder=True
     ):
+        """
+        .. versionadded:: 1.6.0
+
+        Generate a list of plugins currently registered via the plugin manager. This function is
+        exported as a helper under ``generate_plugins_json`` and is available for other plugins
+        to use should they wish to.
+
+        **Example**
+
+        The following code snippet could be used to call this method from a plugin:
+
+        .. code-block:: python
+
+            helpers = self._plugin_manager.get_helpers("pluginmanager", "generate_plugins_json")
+            if helpers and "generate_plugins_json" in helpers:
+                helpers["generate_plugins_json"](self._settings, self._plugin_manager)
+
+        :param octoprint.plugin.PluginSettings settings: an instance of PluginSettings, used to
+            get the basefolder.
+        :param octoprint.plugin.core.PluginManager plugin_manager: an instance of the core plugin manager (not the bundled plugin)
+        :param bool ignore_bundled: ignore bundled plugins when generating list. Defaults to True
+        :param bool ignore_plugins_folder: ignore internal plugins folder (used by single file plugins). Defaults to True
+        :returns list: A list, containing a dictionary for each of the plugins registered, example format:
+
+            .. code-block:: python
+
+                [
+                    {
+                        "key": "example_plugin",
+                        "name": "Example Plugin",
+                        "url": "https://example.com/ExamplePlugin"
+                    },
+                ]
+        """
         plugins = []
         plugin_folder = settings.getBaseFolder("plugins")
         for plugin in plugin_manager.plugins.values():
